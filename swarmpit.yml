@@ -22,7 +22,8 @@ services:
           memory: 512M
       placement:
         constraints:
-          - node.hostname == manager2
+          - node.role == manager
+      replicas: 2
       labels:
         - traefik.frontend.rule=Host:localhost
         - traefik.enable=true
@@ -38,9 +39,10 @@ services:
   db:
     image: couchdb:2.3.0
     volumes:
-      - db-data:/opt/couchdb/data
+      - /home/docker/data/swarmpitdb/opt/couchdb/data:/opt/couchdb/data
     networks:
       - net
+    replicas: 2
     deploy:
       resources:
         limits:
@@ -77,7 +79,3 @@ networks:
     attachable: true
   traefik-public:
     external: true
-
-volumes:
-  db-data:
-    driver: local
