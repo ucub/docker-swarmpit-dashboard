@@ -24,17 +24,6 @@ services:
         constraints:
           - node.role == manager
       replicas: 2
-      labels:
-        - traefik.frontend.rule=Host:localhost
-        - traefik.enable=true
-        - traefik.port=8080
-        - traefik.tags=traefik-public
-        - traefik.docker.network=traefik-public
-        # Traefik service that listens to HTTP
-        - traefik.redirectorservice.frontend.entryPoints=http
-        - traefik.redirectorservice.frontend.redirect.entryPoint=https
-        # Traefik service that listens to HTTPS
-        - traefik.webservice.frontend.entryPoints=https
 
   db:
     image: couchdb:2.3.0
@@ -77,5 +66,3 @@ networks:
   net:
     driver: overlay
     attachable: true
-  traefik-public:
-    external: true
