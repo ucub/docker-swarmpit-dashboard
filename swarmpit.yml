@@ -53,7 +53,7 @@ services:
           memory: 256M
       placement:
         constraints:
-          - node.labels.swarmpit.db-data == true
+          - node.role == manager
 
   agent:
     image: swarmpit/agent:latest
