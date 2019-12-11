@@ -30,8 +30,8 @@ services:
       - /home/docker/data/swarmpitdb/opt/couchdb/data:/opt/couchdb/data
     networks:
       - swarmpit_net
-    replicas: 2
     deploy:
+      replicas: 2
       resources:
         limits:
           cpus: '0.30'
