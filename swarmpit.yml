@@ -10,7 +10,7 @@ services:
     ports:
       - 5001:8080
     networks:
-      - net
+      - swarmpit_net
     deploy:
       resources:
         limits:
@@ -29,7 +29,7 @@ services:
     volumes:
       - /home/docker/data/swarmpitdb/opt/couchdb/data:/opt/couchdb/data
     networks:
-      - net
+      - swarmpit_net
     replicas: 2
     deploy:
       resources:
@@ -50,7 +50,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - net
+      - swarmpit_net
     deploy:
       mode: global
       resources:
@@ -62,6 +62,6 @@ services:
           memory: 32M
 
 networks:
-  net:
+  swarmpit_net:
     driver: overlay
     attachable: true
